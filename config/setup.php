@@ -15,4 +15,12 @@ try {
 catch (PDOException $e ) {
     echo "Error creating table: " . $e->getMessage();
 }
+
+try {
+    $db = $pdo->prepare($user_img);
+    $db->execute();
+} 
+catch (PDOException $e ) {
+    echo "Error creating table: " . $e->getMessage();
+}
 ?>

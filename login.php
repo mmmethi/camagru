@@ -6,7 +6,7 @@ try
  {    
       if(isset($_POST["login"]))  
       {  
-           if(empty($_POST["Username"]) || empty($_POST["password"]))  
+           if(empty($_POST["username"]) || empty($_POST["password"]))  
            {  
                 // $message = '<label>All fields are required</label>'; 
                 echo "All fields are required"; 
@@ -21,13 +21,13 @@ try
                 //           'password'     =>     $_POST["password"]  
                 //      )  
                 // );  
-                $queryt->bindParam(1, $_POST['username']);
-                $queryt->bindParam(2, $email);
+                $queryt->bindParam(":username", $_POST['username']);
+                $queryt->bindParam(":password", $_POST['password']);
                 $queryt->execute();
                 $queryt->SetFetchMode(PDO::FETCH_ASSOC);
-       	        $row = $queryt->fetch();
+       	      $row = $queryt->fetch();
                 // $row = $queryt->rowCount();  
-                if($row > 0)  
+                if($row == 0)  
                 {  
                      $_SESSION["username"] = $_POST["username"];  
                      header("location: index.php");  
@@ -52,7 +52,7 @@ try
 <head>
     <meta charset="UTF-8">
     <title>Camagru | Login</title>
-    <!-- <link rel="stylesheet" href="css/login.css"> -->
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
 <div class="wrapper fadeInDown">
@@ -61,7 +61,7 @@ try
     <h2 class="inactive underlineHover"><a href="signup.php"> Sign Up </a></h2>
 
     <div class="fadeIn first">
-      <img src="images/logo.png" id="icon" alt="User Icon" />
+      <!-- <img src="images/logo.png" id="icon" alt="User Icon" /> -->
     </div>
 
     <form method="post" action="">
